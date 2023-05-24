@@ -5,7 +5,7 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from './entities/user.entity';
 import { GetUser } from './decorators/get-user.decorator';
-import { RawHeaders } from './decorators';
+import { Auth, RawHeaders } from './decorators';
 import { IncomingHttpHeaders } from 'http';
 import { UserRoleGuard } from './guards/user-role/user-role.guard';
 import { RolProtected } from './decorators/rol-protected/rol-protected.decorator';
@@ -56,6 +56,19 @@ export class AuthController {
       user
     }
   }
+
+  @Get('private3')
+  @Auth(ValidRoles.admin)
+  privateRotue3(
+    @GetUser() user: User
+  ){
+    
+    return {
+      ok: true,
+      user
+    }
+  }
+  
 
   @Get()
   getUser(){
