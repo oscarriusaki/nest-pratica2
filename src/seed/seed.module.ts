@@ -4,12 +4,14 @@ import { SeedController } from './seed.controller';
 // import { ProductsService } from 'src/products/products.service';
 import { ProductsService } from '../products/products.service';
 import { ProductsModule } from 'src/products/products.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   controllers: [SeedController],
   providers: [SeedService],
   imports: [
-    ProductsModule
+    ProductsModule,
+    AuthModule
   ]
 })
 export class SeedModule {}
